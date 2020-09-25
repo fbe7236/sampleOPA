@@ -1,5 +1,5 @@
 {
-  "name": "Product Sample Page",
+  "name": "sample-opa",
   "version": "1.0.0",
   "scripts": {
     "dev": "next",
