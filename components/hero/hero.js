@@ -6,7 +6,7 @@ function Hero({ title, subtitle }) {
           <h1 class="sm:text-3xl text-2xl font-medium title-font text-white">
             {title}.
           </h1>
-          <p class="mb-8 leading-relaxed">{subtitle}</p>
+          <p class="mb-8 leading-relaxed text-justify">{subtitle}</p>
           <div class="flex justify-center">
             <button class="inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg">
               Get Started

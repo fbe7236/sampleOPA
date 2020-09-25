@@ -13,7 +13,7 @@ function ContactForm() {
             title="map"
             width="100%"
             height="100%"
-            frameborder="0"
+            frameBorder="0"
             marginHeight="0"
             marginWidth="0"
             scrolling="no"
