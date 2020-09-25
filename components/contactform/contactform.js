@@ -1,6 +1,6 @@
-import TitleAndSubtitle from "../../components/typography/title";
+import TitleAndSubtitle from "../typography/title";
 
-function ContactPage() {
+function ContactForm() {
   return (
     <div>
       <TitleAndSubtitle
@@ -26,11 +26,11 @@ function ContactPage() {
               Contact us!
             </h2>
             <p class="leading-relaxed mb-5 text-gray-500">
-              Interested? Feel free to send us an e-mail!
+              Interested? Feel free to contact us!
             </p>
             <input
               class="bg-gray-800 text-white rounded border border-gray-700 focus:outline-none focus:border-indigo-500 text-base px-4 py-2 mb-4"
-              placeholder="Email"
+              placeholder="E-Mail"
               type="email"
             />
             <textarea
@@ -51,4 +51,4 @@ function ContactPage() {
   );
 }
 
-export default ContactPage;
+export default ContactForm;

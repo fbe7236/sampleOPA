@@ -1,5 +1,5 @@
 {
-  "name": "with-tailwindcss",
+  "name": "Product Sample Page",
   "version": "1.0.0",
   "scripts": {
     "dev": "next",
