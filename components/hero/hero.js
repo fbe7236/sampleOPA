@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 function Hero({ title, subtitle }) {
   return (
     <section class="text-gray-500 bg-gray-900 body-font">
@@ -9,7 +11,7 @@ function Hero({ title, subtitle }) {
           <p class="mb-8 leading-relaxed text-justify">{subtitle}</p>
           <div class="flex justify-center">
             <button class="inline-flex text-white bg-blue-600 border-0 py-2 px-6 focus:outline-none hover:bg-blue-700 rounded text-lg">
-              Jetzt verrechnen
+              <Link href="/invoice">Jetzt verrechnen</Link>
             </button>
           </div>
         </div>
