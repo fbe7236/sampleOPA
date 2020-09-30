@@ -15,13 +15,19 @@ class Invoice extends React.Component {
         due_date: new Date(),
         total: 8000,
       },
+      invoicer: {
+        name: "",
+        address: "",
+        zip: "",
+        city: "",
+        country: "Österreich",
+      },
       recipient: {
-        name: "John Doe",
-        address: "1234 Main Street",
-        city: "San Francisco",
-        state: "CA",
-        country: "US",
-        postal_code: 94111,
+        name: "",
+        address: "",
+        zip: "",
+        city: "",
+        country: "Österreich",
       },
       items: [
         {
@@ -48,7 +54,30 @@ class Invoice extends React.Component {
   };
 
   handleCreateInvoice = () => {
-    fetch("/api/invoice").then((response) => alert("Rechnung erstellt."));
+    const invoiceObj = {
+      invoice: this.state.invoice,
+      invoicer: this.state.invoicer,
+      recipient: this.state.recipient,
+      items: this.state.items,
+    };
+
+    fetch("/api/invoice", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(invoiceObj),
+    }).then((response) => {
+      response.blob().then((blob) => {
+        var file = window.URL.createObjectURL(blob);
+        var a = document.createElement("a");
+        a.href = file;
+        a.download = "Rechnung.pdf";
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+      });
+    });
   };
 
   render() {
@@ -80,6 +109,11 @@ class Invoice extends React.Component {
                           id="grid-first-name"
                           type="text"
                           placeholder="Name"
+                          onChange={(event) => {
+                            let invoicer = { ...this.state.invoicer };
+                            invoicer.name = event.target.value;
+                            this.setState({ invoicer: { ...invoicer } });
+                          }}
                         />
                       </div>
                     </div>
@@ -96,6 +130,11 @@ class Invoice extends React.Component {
                           id="grid-first-addr"
                           type="text"
                           placeholder="Marktplatz 3"
+                          onChange={(event) => {
+                            let invoicer = { ...this.state.invoicer };
+                            invoicer.address = event.target.value;
+                            this.setState({ invoicer: { ...invoicer } });
+                          }}
                         />
                       </div>
                     </div>
@@ -111,6 +150,11 @@ class Invoice extends React.Component {
                           <select
                             class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                             id="grid-state"
+                            onChange={(event) => {
+                              let invoicer = { ...this.state.invoicer };
+                              invoicer.country = event.target.value;
+                              this.setState({ invoicer: { ...invoicer } });
+                            }}
                           >
                             <option>Österreich</option>
                             <option>Schweiz</option>
@@ -140,6 +184,11 @@ class Invoice extends React.Component {
                           id="grid-zip"
                           type="text"
                           placeholder="6800"
+                          onChange={(event) => {
+                            let invoicer = { ...this.state.invoicer };
+                            invoicer.zip = event.target.value;
+                            this.setState({ invoicer: { ...invoicer } });
+                          }}
                         />
                       </div>
                       <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
@@ -154,6 +203,11 @@ class Invoice extends React.Component {
                           id="grid-city"
                           type="text"
                           placeholder="Feldkirch"
+                          onChange={(event) => {
+                            let invoicer = { ...this.state.invoicer };
+                            invoicer.city = event.target.value;
+                            this.setState({ invoicer: { ...invoicer } });
+                          }}
                         />
                       </div>
                     </div>
@@ -184,6 +238,11 @@ class Invoice extends React.Component {
                           id="grid-first-name"
                           type="text"
                           placeholder="Name"
+                          onChange={(event) => {
+                            let recipient = { ...this.state.recipient };
+                            recipient.name = event.target.value;
+                            this.setState({ recipient: { ...recipient } });
+                          }}
                         />
                       </div>
                     </div>
@@ -200,6 +259,11 @@ class Invoice extends React.Component {
                           id="grid-first-addr"
                           type="text"
                           placeholder="Marktplatz 3"
+                          onChange={(event) => {
+                            let recipient = { ...this.state.recipient };
+                            recipient.address = event.target.value;
+                            this.setState({ recipient: { ...recipient } });
+                          }}
                         />
                       </div>
                     </div>
@@ -215,6 +279,11 @@ class Invoice extends React.Component {
                           <select
                             class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                             id="grid-state"
+                            onChange={(event) => {
+                              let recipient = { ...this.state.recipient };
+                              recipient.country = event.target.value;
+                              this.setState({ recipient: { ...recipient } });
+                            }}
                           >
                             <option>Österreich</option>
                             <option>Schweiz</option>
@@ -244,6 +313,11 @@ class Invoice extends React.Component {
                           id="grid-zip"
                           type="text"
                           placeholder="6800"
+                          onChange={(event) => {
+                            let recipient = { ...this.state.recipient };
+                            recipient.zip = event.target.value;
+                            this.setState({ recipient: { ...recipient } });
+                          }}
                         />
                       </div>
                       <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
@@ -258,6 +332,11 @@ class Invoice extends React.Component {
                           id="grid-city"
                           type="text"
                           placeholder="Feldkirch"
+                          onChange={(event) => {
+                            let recipient = { ...this.state.recipient };
+                            recipient.city = event.target.value;
+                            this.setState({ recipient: { ...recipient } });
+                          }}
                         />
                       </div>
                     </div>

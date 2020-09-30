@@ -1,19 +1,6 @@
-const fs = require("fs");
 const PDFDocument = require("pdfkit");
 
-function createInvoice(invoice, path) {
-  let doc = new PDFDocument({ margin: 50 });
-
-  generateHeader(doc);
-  generateCustomerInformation(doc, invoice);
-  generateInvoiceTable(doc, invoice);
-  generateFooter(doc);
-
-  doc.end();
-  doc.pipe(fs.createWriteStream(path));
-}
-
-function generateHeader(doc) {
+pdf function generateHeader(doc, invoice) {
   doc
     .image(
       "/Users/florian/Documents/Development/sampleOPA/pages/api/invoice/WUBS.png",
@@ -23,9 +10,14 @@ function generateHeader(doc) {
     )
     .fillColor("#444444")
     .fontSize(10)
-    .text("ACME Inc.", 200, 50, { align: "right" })
-    .text("123 Main Street", 200, 65, { align: "right" })
-    .text("New York, NY, 10025", 200, 80, { align: "right" })
+    .text(invoice.invoicer.name, 200, 50, { align: "right" })
+    .text(invoice.invoicer.address, 200, 65, { align: "right" })
+    .text(
+      `${invoice.invoicer.zip} ${invoice.invoicer.city}, ${invoice.invoicer.country}`,
+      200,
+      80,
+      { align: "right" }
+    )
     .moveDown();
 }
 
@@ -48,15 +40,10 @@ function generateCustomerInformation(doc, invoice) {
     .text(formatDate(new Date()), 150, customerInformationTop + 30)
 
     .font("Helvetica-Bold")
-    .text(invoice.shipping.name, 300, customerInformationTop)
+    .text(invoice.recipient.name, 300, customerInformationTop)
     .font("Helvetica")
-    .text(invoice.shipping.address, 300, customerInformationTop + 15)
-    .text(
-      invoice.shipping.city +
-        ", " +
-        invoice.shipping.state +
-        ", " +
-        invoice.shipping.country,
+    .text(invoice.recipient.address, 300, customerInformationTop + 15)
+    .text(`${invoice.recipient.zip} ${invoice.recipient.city}, ${invoice.recipient.country}`,
       300,
       customerInformationTop + 30
     )
@@ -117,7 +104,7 @@ function generateInvoiceTable(doc, invoice) {
     "",
     "zzgl. Steuern",
     "",
-    formatCurrency(invoice.paid)
+    formatCurrency(invoice.subtotal * 1.2 - invoice.subtotal)  // 20% Steuersatz
   );
 
   const duePosition = paidToDatePosition + 25;
@@ -184,14 +171,8 @@ function formatDate(date) {
 
 export default (req, res) => {
   const invoice = {
-    shipping: {
-      name: "John Doe",
-      address: "1234 Main Street",
-      city: "San Francisco",
-      state: "CA",
-      country: "US",
-      postal_code: 94111,
-    },
+    invoicer: { ...req.body.invoicer },
+    recipient: { ...req.body.recipient },
     items: [
       {
         item: "TC 100",
@@ -210,9 +191,13 @@ export default (req, res) => {
     paid: 0,
     invoice_nr: 1234,
   };
-  createInvoice(invoice, "rechnung.pdf");
 
-  res.statusCode = 200;
-  res.setHeader("Content-Type", "application/json");
-  res.end(JSON.stringify({ invoice_status: "created" }));
+  let doc = new PDFDocument({ margin: 50 });
+  generateHeader(doc, invoice);
+  generateCustomerInformation(doc, invoice);
+  generateInvoiceTable(doc, invoice);
+  generateFooter(doc);
+
+  doc.end();
+  doc.pipe(res);
 };
