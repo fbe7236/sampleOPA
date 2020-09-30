@@ -1,6 +1,6 @@
 const PDFDocument = require("pdfkit");
 
-pdf function generateHeader(doc, invoice) {
+function generateHeader(doc, invoice) {
   doc
     .image(
       "/Users/florian/Documents/Development/sampleOPA/pages/api/invoice/WUBS.png",
@@ -43,7 +43,8 @@ function generateCustomerInformation(doc, invoice) {
     .text(invoice.recipient.name, 300, customerInformationTop)
     .font("Helvetica")
     .text(invoice.recipient.address, 300, customerInformationTop + 15)
-    .text(`${invoice.recipient.zip} ${invoice.recipient.city}, ${invoice.recipient.country}`,
+    .text(
+      `${invoice.recipient.zip} ${invoice.recipient.city}, ${invoice.recipient.country}`,
       300,
       customerInformationTop + 30
     )
@@ -104,7 +105,7 @@ function generateInvoiceTable(doc, invoice) {
     "",
     "zzgl. Steuern",
     "",
-    formatCurrency(invoice.subtotal * 1.2 - invoice.subtotal)  // 20% Steuersatz
+    formatCurrency(invoice.subtotal * 1.2 - invoice.subtotal) // 20% Steuersatz
   );
 
   const duePosition = paidToDatePosition + 25;
