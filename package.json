@@ -8,7 +8,7 @@
   },
   "dependencies": {
     "fs": "0.0.1-security",
-    "next": "latest",
+    "next": "^9.5.5",
     "pdfkit": "^0.11.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1"

@@ -2,10 +2,10 @@ import TitleAndSubtitle from "../typography/title";
 
 function Pricing() {
   return (
-    <div class="container px-5 py-24 mx-auto">
+    <div id="pricing" class="container px-5 py-24 mx-auto">
       <TitleAndSubtitle title="Preise" subtitle="Unser Angebot an Sie." />
       <div class="flex flex-wrap -m-4 justify-center">
-        <div class="p-4 xl:w-1/4 md:w-1/2 w-full">
+        <div class="p-4 xl:w-1/4 md:w-1/2 w-full transform motion-reduce:transform-none hover:-translate-y-1 hover:scale-110 transition ease-in-out duration-300" >
           <div class="h-full p-6 rounded-lg border-2 border-gray-700 flex flex-col relative overflow-hidden">
             <h2 class="text-sm tracking-widest text-gray-600 title-font mb-1 font-medium">
               STARTER
@@ -45,8 +45,8 @@ function Pricing() {
               </span>
               PDF Download
             </p>
-            <button class="flex items-center mt-auto text-white bg-gray-800 border-0 py-2 px-4 w-full focus:outline-none hover:bg-gray-700 rounded">
-              Ich probier's!  
+            <button class="flex items-center mt-auto text-white bg-gray-800 border-0 py-2 px-4 w-full focus:outline-none hover:bg-gray-700 rounded transform motion-reduce:transform-none hover:-translate-y-1 hover:scale-110 transition ease-in-out duration-300">
+              Ich probier's!
               <svg
                 fill="none"
                 stroke="currentColor"
@@ -59,12 +59,10 @@ function Pricing() {
                 <path d="M5 12h14M12 5l7 7-7 7"></path>
               </svg>
             </button>
-            <p class="text-xs text-gray-600 mt-3">
-              Unser Schnupperangebot.
-            </p>
+            <p class="text-xs text-gray-600 mt-3">Unser Schnupperangebot.</p>
           </div>
         </div>
-        <div class="p-4 xl:w-1/4 md:w-1/2 w-full">
+        <div class="p-4 xl:w-1/4 md:w-1/2 w-full transform motion-reduce:transform-none hover:-translate-y-1 hover:scale-110 transition ease-in-out duration-300">
           <div class="h-full p-6 rounded-lg border-2 border-blue-600 flex flex-col relative overflow-hidden">
             <span class="bg-blue-600 text-white px-3 py-1 tracking-widest text-xs absolute right-0 top-0 rounded-bl">
               WARUM NICHT?
@@ -74,7 +72,9 @@ function Pricing() {
             </h2>
             <h1 class="text-5xl text-white leading-none flex items-center pb-4 mb-4 border-b border-gray-800">
               <span>9.99 €</span>
-              <span class="text-lg ml-1 font-normal text-gray-600">/monat</span>
+              <span class="text-lg ml-1 font-normal text-gray-600">
+                / Monat
+              </span>
             </h1>
             <p class="flex items-center text-gray-500 mb-2">
               <span class="w-4 h-4 mr-2 inline-flex items-center justify-center bg-gray-800 text-gray-500 rounded-full flex-shrink-0">
@@ -140,7 +140,7 @@ function Pricing() {
               </span>
               3 Download-Formate
             </p>
-            <button class="flex items-center mt-auto text-white bg-blue-600 border-0 py-2 px-4 w-full focus:outline-none hover:bg-blue-600 rounded">
+            <button class="flex items-center mt-auto text-white bg-blue-600 border-0 py-2 px-4 w-full focus:outline-none hover:bg-blue-600 rounded transform motion-reduce:transform-none hover:-translate-y-1 hover:scale-110 transition ease-in-out duration-300">
               Das nehm' ich!
               <svg
                 fill="none"

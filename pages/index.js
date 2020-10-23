@@ -13,7 +13,7 @@ export default function IndexPage() {
         <link rel="icon" href="/wubs.png" />
       </Head>
       <Hero title="Willkommen zur modernen Rechnungserstellung!" subtitle="Einfach, schnell und unkompliziert."/>
-      <Pricing />
+      <Pricing/>
       <Testimonials/>
       <ContactForm />
     </Layout>

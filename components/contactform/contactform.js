@@ -1,8 +1,8 @@
 import TitleAndSubtitle from "../typography/title";
 
-function ContactForm() {
+const ContactForm = () => {
   return (
-    <div>
+    <div id="contact">
       <TitleAndSubtitle
         title="Kontaktieren Sie uns!"
         subtitle="Fragen?"
@@ -37,7 +37,7 @@ function ContactForm() {
               class="bg-gray-800 text-white rounded border border-gray-700 focus:outline-none h-32 focus:border-blue-700 text-base px-4 py-2 mb-4 resize-none"
               placeholder="Ihre Nachricht"
             ></textarea>
-            <button class="text-white bg-blue-600 border-0 py-2 px-6 focus:outline-none hover:bg-blue-700 rounded text-lg">
+            <button class="text-white bg-blue-600 border-0 py-2 px-6 focus:outline-none hover:bg-blue-700 rounded text-lg transform motion-reduce:transform-none hover:-translate-y-1 hover:scale-110 transition ease-in-out duration-300">
               Senden
             </button>
             <p class="text-xs text-gray-600 mt-3">

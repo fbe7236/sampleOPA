@@ -2,13 +2,13 @@ import TitleAndSubtitle from "../typography/title";
 
 function Testimonials() {
   return (
-    <div class="container px-5 py-24 mx-auto">
+    <div id="references" class="container px-5 py-24 mx-auto">
       <TitleAndSubtitle
         title="Referenzen"
         subtitle="Was unsere Kunden über uns sagen."
       />
       <div class="flex flex-wrap -m-4">
-        <div class="p-4 md:w-1/2 w-full">
+        <div class="p-4 md:w-1/2 w-full transform motion-reduce:transform-none hover:-translate-y-1 hover:scale-110 transition ease-in-out duration-300">
           <div class="h-full bg-gray-800 p-8 rounded">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -37,7 +37,7 @@ function Testimonials() {
           </div>
         </div>
         <div class="p-4 md:w-1/2 w-full">
-          <div class="h-full bg-gray-800 p-8 rounded">
+          <div class="h-full bg-gray-800 p-8 rounded transform motion-reduce:transform-none hover:-translate-y-1 hover:scale-110 transition ease-in-out duration-300">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="currentColor"
